@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+<style type="text/css">
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<div style="text-align: center;">
+    {% if user[1] == "Гость" %}
+    <h2><b>Добро пожаловать!</b></h2>
+    {% else %}
+    <h2><b>Добро пожаловать!</b><br>Последние кветы:</h2>
+    {% endif %}
+
+    {% for quest in person_quest %}
+    <div style="cursor: pointer;background-color: #D2D2D2; border-radius: 25px;padding:15px; margin: 10px; text-align: left;" onclick="window.open('quest/{{quest['url']}}', '_self');">
+        <h3>{{quest["title"]}}</h3>
+<!--        <progress style="display: block; width:100%; height:100px; margin: 0; position:relative;top:0;left:0;"-->
+<!--                  value="{{quest['value']}}" max="100"></progress>-->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{
+  "None": {
+    "profile_data": [
+      "../static/avas/gust.webp",
+      "\u0413\u043e\u0441\u0442\u044c"
+    ]
+  },
+  "12345": {
+    "profile_data": [
+      "../static/avas/ava.png",
+      "\u0420\u0430\u0435\u0432 \u0410\u043d\u0434\u0440\u0435\u0439"
+    ]
+  },
+  "oEDuIjbLCbNk": {
+    "profile_data": [
+      "../static/avas/ava",
+      "Nerrow"
+    ]
+  }
+}

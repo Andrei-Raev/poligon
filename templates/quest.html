@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+    <style type="text/css">
+        #content {
+            display: block;
+            margin: 3% auto 0;
+            padding: 30px;
+            margin-bottom: 150px;
+            box-shadow: 0 0 30px 20px #E0E0E0 inset;
+            border-radius: 40px;
+            width: 80%;
+            min-height: 60%;
+            font-size: 30px;
+            background-color: #FEFEFE
+        }
+
+        button {
+            /* remove default behavior */
+            appearance: none;
+            -webkit-appearance: none;
+
+            /* usual styles */
+            padding: 10px;
+            border: none;
+            background-color: #D2D2D2;
+            color: #343434;
+            font-weight: 600;
+            border-radius: 5px;
+            width: max-content;
+
+            margin: 20px 20px 0;
+            box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+
+            transition: all 1s;
+        }
+
+        button:hover {
+            box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.3);
+            transition: all 1.5s;
+        }
+
+        .blurred_edges_img {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            box-shadow: 0 0 15px 15px #00000000;
+        }
+
+        body {
+            background-image: url('../static/bg-image.jpg');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-color: #3C2E23;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+
+        window.onload = function loads_page() {
+            var page_content = document.getElementById('content')
+            if (!('{{hedder}}' == '')) {
+                page_content.innerHTML = "<b style='font-size:50px;'>{{hedder}}</b><br><br>" + (page_content.textContent)
+            } else {
+                page_content.innerHTML = (page_content.textContent)
+            }
+
+
+            var act_list = document.getElementById('action_b')
+            var li = act_list.getElementsByTagName('li')
+
+            for (let index = 0; index < li.length; ++index) {
+                li[index].innerHTML = (li[index].textContent)
+            }
+        }
+
+        function start_quest() {
+            const request = new XMLHttpRequest();
+            request.responseType = "json";
+            request.open("GET", '/test', false)
+            console.log(request.send())
+        }
+    </script>
+{% endblock style %}
+
+
+{% block content %}
+    <div style="align-items: center;">
+        <div id="content">
+            {{ quest_text }}
+        </div>
+
+    </div>
+
+    <div id="controls" style="position:fixed;
+                          display:flex;
+                          align-items:center;
+                          justify-content:center;
+                          left:0;
+                          bottom: 1%;
+                          width:100vw;">
+        <style type="text/css">
+            .action_button {
+                display: block;
+                text-align: center;
+                border: none;
+                background-color: #D2D2D2;
+                color: #343434;
+                border-radius: 5px;
+                width: max-content;
+
+                margin: 0;
+                box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+                text-decoration: none;
+
+                transition: all 0.5s;
+            }
+
+            .action_button:hover {
+                box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.3);
+                transition: all 0.5s;
+            }
+
+        </style>
+        <ul id="action_b" style="list-style-type: none;
+            /*margin: 0 auto;*/
+            width: min-content;
+            font-size: 25px;
+            padding: 15px 40px;
+            padding-top: 0;
+            overflow: hidden;
+            background-color: #F3F3F3;
+            border-radius: 25px;
+            text-align: center;">
+            {% for button in buttons %}
+                <li>{{ button }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

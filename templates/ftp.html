@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+<style type="text/css">
+    form {
+        padding: 70px;
+        border: 0;
+        margin: 100px;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+        font-size: 25px;
+        transition: all 1s;
+        border-radius: 10px;
+
+    }
+
+    form:hover {
+        box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.5);
+        transition: all 1.5s;
+    }
+
+    input[type=text] {
+        padding: 10px;
+        border: 0;
+        margin: 15px;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+        font-size: 25px;
+        transition: all 1s;
+        border-radius: 10px;
+        width: 30em;
+    }
+
+    input[type=text]:hover {
+        box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.5);
+        transition: all 1.5s;
+    }
+
+
+    input[type=file] {
+        color: #555;
+        padding: 10px;
+        margin: 15px;
+        line-height: 40px;
+        width: 30em;
+        border-radius: 10px;
+        display: block;
+        border: 0
+    }
+
+
+    button {
+
+        /* remove default behavior */
+        appearance: none;
+        -webkit-appearance: none;
+
+        /* usual styles */
+        padding: 10px;
+        border: none;
+        background-color: #D2D2D2;
+        color: #343434;
+        font-weight: 600;
+        border-radius: 5px;
+        width: 500px;
+        margin: 20px 20px 0;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+
+        transition: all 1s;
+    }
+
+    button:hover {
+        box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.3);
+        transition: all 1.5s;
+    }
+</style>
+
+{% endblock style %}
+
+
+{% block content %}
+
+<div style="text-align: center">
+    {%if conmplite%}
+    <h1>Файлы успешно загружены!</h1>
+    {%else%}
+    <form name="upload" enctype="multipart/form-data" method="post">
+        <p style="font-size: 30px" id="log">Загрузить файл</p><br>
+        <label>
+            <input required multiple name="image_file" accept="*" type="file">
+        </label><br>
+        <input type="submit" value="Загрузить">
+        <button type="submit">
+            Вознести на облако
+        </button>
+    </form>
+    {%endif%}
+</div>
+
+
+<script type="text/javascript">
+    console.log(document.forms)
+    var form = document.forms.item(0)
+    console.log(form)
+
+    function log(html) {
+        document.getElementById('log').innerHTML = html;
+    }
+
+    form.onsubmit = function () {
+        var file = this.elements.image_file.files[0];
+        if (file) {
+            upload(file);
+        }
+        return false;
+    }
+
+
+    function upload(file) {
+
+        console.log('1234' + file)
+
+        var xhr = new XMLHttpRequest();
+
+        // обработчики можно объединить в один,
+        // если status == 200, то это успех, иначе ошибка
+        xhr.onload = xhr.onerror = function () {
+            if (this.status === 200) {
+                log("success");
+            } else {
+                log("error " + this.status);
+            }
+        };
+
+        // обработчик для отправки
+        xhr.upload.onprogress = function (event) {
+            log("Загружено " + (event.loaded / event.total).toFixed(2) + "%");
+        }
+
+        xhr.open("POST", "upload", true);
+        xhr.send(file);
+    }
+</script>
+
+
+{% endblock %}

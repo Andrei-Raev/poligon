@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+
+    <!--    Импорт библиотек    -->
+    <!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+    <!--    <link rel="stylesheet" href="static/main.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--    Конец импорта библиотек    -->
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Main font';
+            src: url('/static/font.ttf');
+        }
+
+        body {
+            font-family: 'Main font', serif;
+        }
+
+
+        .content-block {
+            padding: 10px;
+            border: 0;
+            margin: 5px;
+            box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+            transition: all 1s;
+            border-radius: 10px;
+        }
+
+        /* Стилизация навигационного меню */
+
+        .nav-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .nav-item {
+            display: block;
+            width: 100px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+
+            transition: all 0.5s;
+        }
+
+        .nav-item:hover {
+            background-color: #111;
+            transition: all 0.5s;
+        }
+
+        li {
+            float: right;
+        }
+
+        /* Конец стилизации навигационного меню */
+        /*--------===========-----------*/
+
+
+    </style>
+
+    {% block style %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <h1 style="background-color: #F5F5F5; padding: 15px 15px 15px 25px;font-weight: 500">Квест</h1>
+    <div id="profile" title="Посмотреть профиль"
+         style="font-size: 20px; position: absolute; right: 15px; top: 5px;cursor: pointer;">
+        <img style="margin: 10px; border-radius: 15px"
+             width="50px"
+             alt="Label"
+             src="{{user[0]}}">
+        {{user[1]}}
+    </div>
+</header>
+
+<nav>
+    <ul class="nav-menu" id="nav-menu">
+        <li><a href="../" class="nav-item">Главная страница</a></li>
+        <li><a href="../account" class="nav-item">Личный кабинет</a></li>
+        <li><a href="../quit" class="nav-item">Выйти из аккаунта</a></li>
+    </ul>
+</nav>
+
+
+{% block content %}{% endblock %}
+
+
+<script type="text/javascript">
+    var profile = document.getElementById('profile')
+    var nav_menu = document.getElementById('nav-menu')
+    console.log(profile)
+
+    profile.onclick = function menu_click() {
+        nav_menu.style.backgroundColor = "#fff"
+        window.location.replace("../login")
+        console.log('Magia')
+    }
+
+</script>
+
+</body>
+</html>

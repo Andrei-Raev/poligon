@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+<style type="text/css">
+    form {
+        padding: 30px;
+        width: 80%;
+        max-width: 1300px;
+        border: 0;
+        margin: auto;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+        font-size: 25px;
+        transition: all 1s;
+        border-radius: 10px;
+    }
+
+    form:hover {
+        box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.5);
+        transition: all 1.5s;
+    }
+
+    input {
+        padding: 10px;
+        border: 0;
+        margin: 15px;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+        font-size: 25px;
+        transition: all 1s;
+        border-radius: 10px;
+        width: 30em;
+    }
+
+    input:hover {
+        box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.5);
+        transition: all 1.5s;
+    }
+
+
+    button {
+
+        /* remove default behavior */
+        appearance: none;
+        -webkit-appearance: none;
+
+        /* usual styles */
+        padding: 10px;
+        border: none;
+        background-color: #D2D2D2;
+        color: #343434;
+        font-weight: 600;
+        border-radius: 5px;
+        width: 500px;
+        margin: 20px 20px 0;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+
+        transition: all 1s;
+    }
+
+    button:hover {
+        box-shadow: 0 8px 15px 7px rgba(0, 0, 0, 0.3);
+        transition: all 1.5s;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div style="text-align: center">
+    <form method="post">
+        <h1>Регистрация</h1>
+        <label>
+            <input required type="text" name="name" placeholder="Имя">
+        </label><br>
+
+        <label>
+            <input required type="text" name="surname" placeholder="Фамилия">
+        </label><br>
+
+        <label>
+            <input required type="text" name="nickname" placeholder="Предпочитаемое имя (ник)">
+        </label><br>
+
+        <label>
+            <input required type="email" name="email" placeholder="Электронная почта">
+        </label><br>
+
+        <label>
+            <input required type="password" name="password" placeholder="Придумайте пароль">
+        </label><br>
+        <button type="submit">
+            Принять ислам
+        </button>
+    </form>
+</div>
+
+{% endblock content %}
